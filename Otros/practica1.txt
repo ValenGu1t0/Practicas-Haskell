@@ -1,0 +1,54 @@
+-- EJERCICIOS RECURSION Y LISTAS POR COMPRENSION 
+-- factorial
+fact 0 = 1
+fact n = n * fact (n-1)
+
+-- cuenta elemenetos en una lista
+cuenta [] = 0
+cuenta (x:xs) = 1 + cuenta xs
+
+-- suma de elementos de una lista
+suma [] = 0
+suma (x:t) ) x + suma t
+ 
+-- concatenar dos listas
+concatenar [] l = l
+concatenar l [] = l
+concatenar (x:t) l = x : concatenar t l
+
+-- invertir una lista
+reverse [] = []
+reverse (x:xs) = reverse xs ++ [x] -- une dos listas
+
+--minimo de una lista 
+minimo [] = error "conjunto vacio"
+minimo [x] = x
+minimo (x:y:t) = if x < y then minimo (x:t)
+                 else minimo (y:t)
+
+--mDTake n  x:xs
+mtake _ [] = []
+mtake 0 _ = []
+mtake n (x:xs) = x :mtake (n-1) xs
+
+
+--mDrop m x:t
+mdrop _ [] = []
+mdrop 0 p = p
+mdrop n (x:t) = mdrop (n-1) t
+
+--mMap f (x:xs)--> [f x1, f x2, ...., f xn]
+mMap f [] = []
+mMap 0 p = p
+mMap f (x:xs) = (f x) : mMap f xs
+
+---- Usando listas por comprension
+mMap2 f p = [f x | x<-p]
+
+---- mfilter p (x:xs)  (filtra los elementos de una lista que cumplen una condicion booleana, ej, par o impar)
+mfilter p  [] = []
+mfilter p (x:xs) = if p x then x:mfilter p t
+                   else mfilter p t
+
+-- Usando listas por comprension
+mfilter2 p lista = [x|x<-lista, p x] 
